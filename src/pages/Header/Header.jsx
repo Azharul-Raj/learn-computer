@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthProvider";
+// import { AuthContext } from "../contexts/AuthProvider";
 
 const Header = () => {
-  const { user,logOut } = useContext(AuthContext);
+  // const { user,logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <div className="">
@@ -75,7 +75,7 @@ const Header = () => {
                 About us
               </Link>
             </li>
-            {user ?<li>
+            <li>
               <Link
                 to="/login"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
@@ -85,10 +85,9 @@ const Header = () => {
                 Login
               </Link>
             </li>
-              :
+              
             <li>
                 <Link
-                  onClick={logOut}
                 to="/login"
                 className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
@@ -96,7 +95,7 @@ const Header = () => {
               >
                 Logout
               </Link>
-            </li>}
+            </li>
           </ul>
           <div className="lg:hidden">
             <button
