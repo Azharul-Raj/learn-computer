@@ -48,13 +48,13 @@ const Home = () => {
                     height="24"
                   />
                 </svg>
-                <span className="relative">The</span>
+                <span className="relative">Welcome!!</span>
               </span>{' '}
-              quick, brown fox jumps over a lazy dog
+              To our most popular Computer courses zone.
             </h2>
-            <p className="text-base text-gray-700 md:text-lg">
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque rem aperiam, eaque ipsa quae.
+                        <p className="text-base text-gray-700 md:text-lg">
+                            Here you will find top best teachers classes with reasonable price.
+                            We always try to make sure our course quality 
             </p>
           </div>
           <div>
