@@ -9,18 +9,21 @@ const Register = () => {
     googleSignIn,
     githubSignIn,
     emailSignUp,
+    completeProfile
   } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
+    const photo = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, password);
     emailSignUp(email, password)
       .then(result => {
         const profile = result.user;
+        completeProfile(name,photo)
         console.log(profile);
         form.reset();
         <Navigate to='/login'/>
@@ -94,6 +97,16 @@ const Register = () => {
               <input
                 type="text"
                 name="name"
+                className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium leading-none text-gray-800">
+                Image Url
+              </label>
+              <input
+                type="url"
+                name="img"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
               />
             </div>

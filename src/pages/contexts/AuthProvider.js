@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from "firebase/auth";
 import app from '../../firebase/firebase.config'
 
 
@@ -37,6 +37,15 @@ const AuthProvider = ({ children }) => {
     const githubSignIn = () => {
         return signInWithPopup(auth, githubProvider);
     }
+    // update profile info
+    const completeProfile = (name,img) => {
+        updateProfile(auth.currentUser, {
+            displayName: name,
+            photoURL:img
+        })
+            .then(() => { })
+        .catch(error=>console.log(error))
+    }
     // sign Out 
     const logOut = () => {
         signOut(auth)
@@ -53,7 +62,7 @@ const AuthProvider = ({ children }) => {
     },[])
 
     // selected place setting function here
-    const userDetails={details,user,loading,googleSignIn,githubSignIn,emailSignUp,emailLogin,logOut, setDetails}
+    const userDetails={details,user,loading,googleSignIn,githubSignIn,emailSignUp,emailLogin,completeProfile,logOut, setDetails}
     return (
         <AuthContext.Provider value={userDetails}>
             {children}
