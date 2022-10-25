@@ -1,34 +1,31 @@
 import React, { useContext } from "react";
 import github from "../../assets/icons8-github.svg";
 import google from "../../assets/icons8-google.svg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
-const Login = () => {
+const Register = () => {
   const {
     googleSignIn,
     githubSignIn,
-    emailLogin,
+    emailSignUp,
   } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || '/';
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+    const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log( email, password);
-    emailLogin(email, password)
-      .then((result) => {
+    console.log(name, email, password);
+    emailSignUp(email, password)
+      .then(result => {
         const profile = result.user;
         console.log(profile);
         form.reset();
-        navigate(from, { replace: true });
+        <Navigate to='/login'/>
       })
-      .catch((error) => {
-        console.log(error);
-      });
+    .catch(error=>{console.log(error)})
   };
   // google signIn
   const handleGoogleSignIn = () => {
@@ -48,23 +45,19 @@ const Login = () => {
       })
       .catch((error) => console.log(error));
   };
-
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full pt-0 pb-16 px-4">
       <div className="flex flex-col items-center justify-center">
         <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
-          <p
-            aria-label="Login to your account"
-            className="text-2xl font-extrabold leading-6 text-gray-800"
-          >
-            LogIn From Here
+          <p className="text-2xl font-extrabold leading-6 text-gray-800">
+            SignUp to your account
           </p>
           <p className="text-sm mt-4 font-medium leading-none text-gray-500">
-            Have an have account?{" "}
-            <Link to="/register">
+            Don't have account?{" "}
+            <Link to="/login">
               <span className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer">
                 {" "}
-                Sign Up Here
+                Login here
               </span>
             </Link>
           </p>
@@ -96,12 +89,21 @@ const Login = () => {
           <form onSubmit={handleSubmit} action="">
             <div>
               <label className="text-sm font-medium leading-none text-gray-800">
-                Write Your Email
+                Enter Your Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+              />
+            </div>
+            <div>
+              <label className="text-sm font-medium leading-none text-gray-800">
+                Email
               </label>
               <input
                 type="email"
                 name="email"
-                placeholder="Enter Your Email"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
               />
             </div>
@@ -116,7 +118,7 @@ const Login = () => {
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 />
                 <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
-                  {/* eye icon here */}
+                  {/* eye icon  */}
                 </div>
               </div>
             </div>
@@ -125,7 +127,7 @@ const Login = () => {
                 type="submit"
                 className="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 text-sm font-semibold leading-none text-white focus:outline-none bg-indigo-700 border rounded hover:bg-indigo-600 py-4 w-full"
               >
-                Log In
+                Create my account
               </button>
             </div>
           </form>
@@ -135,4 +137,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
