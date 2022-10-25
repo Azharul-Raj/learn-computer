@@ -3,6 +3,7 @@ import Home from "../pages/Home/Home";
 import Main from "./Main";
 import Register from "../pages/Form/Register"
 import Login from "../pages/Form/Login";
+import Courses from "../pages/Courses/Courses";
 
 export const route = createBrowserRouter([
     {
@@ -13,6 +14,12 @@ export const route = createBrowserRouter([
                 path: '/',
                 element:<Home/>
             },
+            {
+                path: '/courses',
+                element: <Courses />,
+                loader:()=>fetch('https://learning-serverside.vercel.app/courses')
+            },
+            
             {
                 path: '/register',
                 element:<Register/>
