@@ -48,9 +48,9 @@ const Home = () => {
                     height="24"
                   />
                 </svg>
-                <span className="relative">Welcome!!</span>
-              </span>{' '}
-              To our most popular Computer courses zone.
+                <span className=""></span>
+              </span>
+              Welcome!! To our most popular Computer courses zone.
             </h2>
                         <p className="text-base text-gray-700 md:text-lg">
                             Here you will find top best teachers classes with reasonable price.
@@ -59,8 +59,8 @@ const Home = () => {
           </div>
           <div>
             <Link
-              to="/"
-              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+              to="/courses"
+              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-500 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
             >
               Explore Courses
             </Link>

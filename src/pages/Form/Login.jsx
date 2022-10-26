@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import github from "../../assets/icons8-github.svg";
 import google from "../../assets/icons8-google.svg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 
 
@@ -37,6 +37,9 @@ const Login = () => {
       .then((result) => {
         const profile = result.user;
         console.log(profile);
+        // navigate(from, { replace: true });
+        navigate('/')
+        console.log('asci');
       })
       .catch((error) => console.log(error));
   };

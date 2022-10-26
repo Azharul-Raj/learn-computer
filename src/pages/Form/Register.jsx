@@ -45,6 +45,7 @@ const Register = () => {
       .then((result) => {
         const profile = result.user;
         console.log(profile);
+        <Navigate to='/'/>
       })
       .catch((error) => console.log(error));
   };

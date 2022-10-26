@@ -14,7 +14,7 @@ const Header = () => {
   }
   
   return (
-    <div className="">
+    <div className="z-50">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div className="relative flex items-center justify-between">
           <Link
@@ -61,7 +61,7 @@ const Header = () => {
             </li>
             <li>
               <Link
-                to="/"
+                to="/faq"
                 aria-label="Product pricing"
                 title="Product pricing"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -81,7 +81,7 @@ const Header = () => {
             </li> :
             <>
             <li>
-              <img className="h-8 w-8 rounded-full" src="https://i.ibb.co/gzLL7z1/Sajek-imge1.jpg" alt="" />
+              <img className="h-8 w-8 rounded-full" title={user.displayName} src={user.imageUrl} alt="" />
               </li>
             <li>
                   <Link

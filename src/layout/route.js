@@ -7,6 +7,8 @@ import Courses from "../pages/Courses/Courses";
 import CourseDetails from "../pages/Courses/CourseDetails/CourseDetails";
 import Blog from "../pages/Blog/Blog";
 import NotFound from "../pages/NotFound/NotFound";
+import Premium from "../Premium/Premium";
+import Protected from "../pages/Protected/Protected";
 
 export const route = createBrowserRouter([
     {
@@ -30,6 +32,10 @@ export const route = createBrowserRouter([
             {
                 path: '/blog',
                 element:<Blog/>
+            },
+            {
+                path: '/premium',
+                element:<Protected><Premium/></Protected>
             },
             
             {
