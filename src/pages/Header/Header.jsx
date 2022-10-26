@@ -1,10 +1,18 @@
+
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthProvider";
 // import { AuthContext } from "../contexts/AuthProvider";
 
 const Header = () => {
-  // const { user,logOut } = useContext(AuthContext);
+  const { user,logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const [dark,setDark]=useState(true)
+  const handleToggle = () => {
+    setDark(!dark)
+  }
+  
   return (
     <div className="">
       <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -15,7 +23,7 @@ const Header = () => {
             title="Company"
             className="inline-flex items-center"
           >
-            <svg
+            {/* <svg
               className="w-8 text-deep-purple-accent-400"
               viewBox="0 0 24 24"
               strokeLinejoin="round"
@@ -29,30 +37,26 @@ const Header = () => {
               <rect x="3" y="17" width="7" height="6" />
               <rect x="14" y="1" width="7" height="6" />
               <rect x="14" y="11" width="7" height="12" />
-            </svg>
+            </svg> */}
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-              Company
+              ComputerZone
             </span>
           </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex">
             <li>
               <Link
-                to="/"
-                aria-label="Our product"
-                title="Our product"
+                to="/courses"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
-                Product
+                Courses
               </Link>
             </li>
             <li>
               <Link
-                to="/"
-                aria-label="Our product"
-                title="Our product"
+                to="/blog"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
-                Features
+                Blog
               </Link>
             </li>
             <li>
@@ -62,46 +66,41 @@ const Header = () => {
                 title="Product pricing"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
-                Pricing
+                FAQ
               </Link>
             </li>
-            <li>
-              <Link
-                to="/"
-                aria-label="About us"
-                title="About us"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                About us
-              </Link>
-            </li>
-            <li>
+           {!user? <li>
               <Link
                 to="/login"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-500 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
               >
                 Login
               </Link>
-            </li>
-
+            </li> :
+            <>
             <li>
-              <Link
-                to="/login"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
+              <img className="h-8 w-8 rounded-full" src="https://i.ibb.co/gzLL7z1/Sajek-imge1.jpg" alt="" />
+              </li>
+            <li>
+                  <Link
+                    onClick={logOut}
+                to="/"
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-500 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                 aria-label="Sign up"
                 title="Sign up"
               >
                 Logout
               </Link>
-            </li>
+              </li>
+              </>}
             {/* toggler button */}
 
             <label htmlFor="default-toggle" className="inline-flex relative items-center cursor-pointer">
-  <input type="checkbox" value="" id="default-toggle" className="sr-only peer"/>
+  <input checked={dark} onChange={handleToggle} type="checkbox" value="" id="default-toggle" className="sr-only peer"/>
   <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-  <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
+              <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{ dark?'Dark':'Light'}</span>
 </label>
 
             {/* toggler button */}
@@ -139,23 +138,8 @@ const Header = () => {
                         title="Company"
                         className="inline-flex items-center"
                       >
-                        <svg
-                          className="w-8 text-deep-purple-accent-400"
-                          viewBox="0 0 24 24"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeMiterlimit="10"
-                          stroke="currentColor"
-                          fill="none"
-                        >
-                          <rect x="3" y="1" width="7" height="12" />
-                          <rect x="3" y="17" width="7" height="6" />
-                          <rect x="14" y="1" width="7" height="6" />
-                          <rect x="14" y="11" width="7" height="12" />
-                        </svg>
                         <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                          Company
+                          ComputerZone
                         </span>
                       </Link>
                     </div>
@@ -179,54 +163,55 @@ const Header = () => {
                     <ul className="space-y-4">
                       <li>
                         <Link
-                          to="/"
+                          to="/courses"
                           aria-label="Our product"
                           title="Our product"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Product
+                          Courses
                         </Link>
                       </li>
                       <li>
                         <Link
-                          to="/"
+                          to="/blog"
                           aria-label="Our product"
                           title="Our product"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Features
+                          Blog
                         </Link>
                       </li>
                       <li>
                         <Link
-                          to="/"
+                          to="/faq"
                           aria-label="Product pricing"
                           title="Product pricing"
                           className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                         >
-                          Pricing
+                          FAQ
                         </Link>
                       </li>
-                      <li>
+                      {user?<li>
                         <Link
+                          onClick={logOut}
                           to="/"
-                          aria-label="About us"
-                          title="About us"
-                          className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          aria-label="Sign up"
+                          title="Sign up"
                         >
-                          About us
+                          Logout
                         </Link>
-                      </li>
+                      </li>:
                       <li>
                         <Link
                           to="/login"
-                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                          className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-500 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                           aria-label="Sign up"
                           title="Sign up"
                         >
                           Login
                         </Link>
-                      </li>
+                      </li>}
                     </ul>
                   </nav>
                 </div>
