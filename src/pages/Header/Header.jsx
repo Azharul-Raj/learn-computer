@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
-// import { AuthContext } from "../contexts/AuthProvider";
+import logo from '../../assets/my_computer.png'
 
 const Header = () => {
   const { user,logOut } = useContext(AuthContext);
@@ -38,6 +38,7 @@ const Header = () => {
               <rect x="14" y="1" width="7" height="6" />
               <rect x="14" y="11" width="7" height="12" />
             </svg> */}
+            <img className="h-8 w-8" src={logo} alt="" />
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
               ComputerZone
             </span>
