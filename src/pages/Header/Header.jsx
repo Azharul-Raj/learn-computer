@@ -82,7 +82,7 @@ const Header = () => {
             </li> :
             <>
             <li>
-              <img className="h-8 w-8 rounded-full border-red-500 border-solid border-2 border-spacing-2" title={user?.displayName} src={user.imageUrl} alt="" />
+              <img className="h-8 w-8 rounded-full border-red-500 border-solid border-2 border-spacing-2" title={user?.displayName} src={user.photoURL} alt="" />
               </li>
             <li>
                   <Link
