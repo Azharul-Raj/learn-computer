@@ -4,10 +4,10 @@ Website Link[ComputerZone](https://learning-app-171dc.web.app/).
 
 ## Available DETAILS
 
-##  This is a computer learning website.
-##  It offers around 8 courses.
-##  The courses are extremly valuable form all.
-##  WE are welcoming here people of all fields. 
+*  This is a computer learning website.
+*  It offers around 8 courses.
+*  The courses are extremly valuable form all.
+*  WE are welcoming here people of all fields. 
 
 ### USING TOOLS OF THIS PROJECT
 ####  1.REACT IS USED AS JAVASCRIPT LIBRARY for clint side

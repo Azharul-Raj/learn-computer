@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import github from "../../assets/icons8-github.svg";
 import google from "../../assets/icons8-google.svg";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
 import toast from "react-hot-toast";
 
@@ -13,6 +13,8 @@ const Register = () => {
     completeProfile
   } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,14 +23,14 @@ const Register = () => {
     const photo = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password,photo);
     emailSignUp(email, password)
       .then(result => {
         const profile = result.user;
         console.log(profile);
         completeProfile(name,photo)
         form.reset();
-        navigate('/')
+        // navigate('/')
+        navigate(from, { replace: true });
         toast.success('Account Created Successfully')
       })
     .catch(error=>{toast.error(`opps ${error.message}`)})
@@ -39,7 +41,7 @@ const Register = () => {
       .then((result) => {
         const profile = result.user;
         console.log(profile);
-        navigate('/')
+        navigate(from, { replace: true });
       })
       .catch((error) => toast.error(`opps ${error.message}`));
   };
@@ -48,8 +50,7 @@ const Register = () => {
     githubSignIn()
       .then((result) => {
         const profile = result.user;
-        console.log(profile);
-        navigate('/')
+        navigate(from, { replace: true });
       })
       .catch((error) => toast.error(`opps ${error.message}`));
   };

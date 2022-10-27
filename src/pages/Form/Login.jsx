@@ -41,8 +41,6 @@ const Login = () => {
         const profile = result.user;
         console.log(profile);
         navigate(from, { replace: true });
-        // navigate('/')
-        console.log('asci');
       })
       .catch((error) => toast.error(error.message));
   };
