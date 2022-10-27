@@ -30,12 +30,13 @@ export const route = createBrowserRouter([
                 loader:({params})=>fetch(`https://learning-serverside.vercel.app/course/${params.id}`)
             },
             {
-                path: '/blog',
-                element:<Blog/>
+                path: '/premium/:id',
+                element: <Premium />,
+                loader:({params})=>fetch(`https://learning-serverside.vercel.app/premium/${params.id}`)
             },
             {
-                path: '/premium',
-                element:<Protected><Premium/></Protected>
+                path: '/blog',
+                element:<Blog/>
             },
             
             {

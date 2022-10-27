@@ -3,6 +3,7 @@ import github from "../../assets/icons8-github.svg";
 import google from "../../assets/icons8-google.svg";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
+import toast from "react-hot-toast";
 
 
 const Login = () => {
@@ -26,8 +27,10 @@ const Login = () => {
         console.log(profile);
         form.reset();
         navigate(from, { replace: true });
+        toast.success('Loged in successfully')
       })
       .catch((error) => {
+        toast.error(error.message)
         console.log(error);
       });
   };
@@ -41,7 +44,7 @@ const Login = () => {
         navigate('/')
         console.log('asci');
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error.message));
   };
   // github signIn
   const handleGitHubSignIn = () => {
@@ -50,7 +53,7 @@ const Login = () => {
         const profile = result.user;
         console.log(profile);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(error.message));
   };
 
   return (
