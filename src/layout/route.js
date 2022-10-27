@@ -9,6 +9,7 @@ import Blog from "../pages/Blog/Blog";
 import NotFound from "../pages/NotFound/NotFound";
 import Premium from "../Premium/Premium";
 import Protected from "../pages/Protected/Protected";
+import FAQ from "../pages/FAQ/FAQ";
 
 export const route = createBrowserRouter([
     {
@@ -31,14 +32,17 @@ export const route = createBrowserRouter([
             },
             {
                 path: '/premium/:id',
-                element: <Premium />,
+                element: <Protected><Premium/></Protected>,
                 loader:({params})=>fetch(`https://learning-serverside.vercel.app/premium/${params.id}`)
             },
             {
                 path: '/blog',
                 element:<Blog/>
             },
-            
+            {
+                path: '/faq',
+                element:<FAQ/>
+            },
             {
                 path: '/register',
                 element:<Register/>

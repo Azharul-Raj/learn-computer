@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import github from "../../assets/icons8-github.svg";
 import google from "../../assets/icons8-google.svg";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const {
@@ -11,6 +12,7 @@ const Register = () => {
     emailSignUp,
     completeProfile
   } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,16 +21,17 @@ const Register = () => {
     const photo = form.img.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    console.log(name, email, password,photo);
     emailSignUp(email, password)
       .then(result => {
         const profile = result.user;
-        completeProfile(name,photo)
         console.log(profile);
+        completeProfile(name,photo)
         form.reset();
-        <Navigate to='/login'/>
+        navigate('/')
+        toast.success('Account Created Successfully')
       })
-    .catch(error=>{console.log(error)})
+    .catch(error=>{toast.error(`opps ${error.message}`)})
   };
   // google signIn
   const handleGoogleSignIn = () => {
@@ -36,8 +39,9 @@ const Register = () => {
       .then((result) => {
         const profile = result.user;
         console.log(profile);
+        navigate('/')
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(`opps ${error.message}`));
   };
   // github signIn
   const handleGitHubSignIn = () => {
@@ -45,9 +49,9 @@ const Register = () => {
       .then((result) => {
         const profile = result.user;
         console.log(profile);
-        <Navigate to='/'/>
+        navigate('/')
       })
-      .catch((error) => console.log(error));
+      .catch((error) => toast.error(`opps ${error.message}`));
   };
   return (
     <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full pt-0 pb-16 px-4">
@@ -99,7 +103,7 @@ const Register = () => {
                 type="text"
                 name="name"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-              />
+               required/>
             </div>
             <div>
               <label className="text-sm font-medium leading-none text-gray-800">
@@ -109,7 +113,7 @@ const Register = () => {
                 type="url"
                 name="img"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-              />
+               required/>
             </div>
             <div>
               <label className="text-sm font-medium leading-none text-gray-800">
@@ -119,7 +123,7 @@ const Register = () => {
                 type="email"
                 name="email"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-              />
+               required/>
             </div>
             <div className="mt-6  w-full">
               <label className="text-sm font-medium leading-none text-gray-800">
@@ -130,7 +134,7 @@ const Register = () => {
                   type="password"
                   name="password"
                   className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                />
+                 required/>
                 <div className="absolute right-0 mt-2 mr-3 cursor-pointer">
                   {/* eye icon  */}
                 </div>

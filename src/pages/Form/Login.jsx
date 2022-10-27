@@ -40,8 +40,8 @@ const Login = () => {
       .then((result) => {
         const profile = result.user;
         console.log(profile);
-        // navigate(from, { replace: true });
-        navigate('/')
+        navigate(from, { replace: true });
+        // navigate('/')
         console.log('asci');
       })
       .catch((error) => toast.error(error.message));
@@ -52,6 +52,7 @@ const Login = () => {
       .then((result) => {
         const profile = result.user;
         console.log(profile);
+        navigate(from, { replace: true });
       })
       .catch((error) => toast.error(error.message));
   };
